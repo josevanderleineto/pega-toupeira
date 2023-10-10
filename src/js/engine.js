@@ -1,3 +1,4 @@
+
 const state = {
     view:{
         squares: document.querySelectorAll(".square"),
@@ -7,14 +8,38 @@ const state = {
 
     },
     values: {
-        timeId: null,
         gameVelocity: 1000,
         hitPosition: 0,
-        result: 0
+        result: 0,
+        curretTime: 60,
+
+    },
+
+    actions:{
+        timeId: setInterval(randomSquare, 1000),
+        countDownTimerId: setInterval(countDown,1000),
 
     }
 
 };
+
+function countDown() {
+    state.values.curretTime--;
+
+    state.view.timeLeft.textContent = state.values.curretTime;
+
+    if (state.values.curretTime <=  0)  {
+        clearInterval(state.actions.countDownTimerId);
+        clearInterval(state.actions.timeId);
+        alert("Gmae Over! O seu resultado foi:" + state.values.result);
+    }
+}
+
+function playSound(audioName){
+    let audio = new Audio(`/src/audios/${audioName}.m4a`);
+    audio.volume = 0.2;
+    audio.play();
+}
 
 function randomSquare(){
     state.view.squares.forEach((square) => {
@@ -26,10 +51,7 @@ function randomSquare(){
     randomSquare.classList.add("enemy");
     state.values.hitPosition = randomSquare.id;
 }
-function moveEnemy() {
-    state.values.timeId = setInterval(randomSquare, state.values.gameVelocity);
 
-}
 
 
 function addListenerHitBox() {
@@ -39,14 +61,16 @@ function addListenerHitBox() {
                 state.values.result++
                 state.view.score.textContent = state.values.result;
                 state.values.hitPosition = null;
+                playSound("hit");
             }
         })
     })
 }
-//parei na parte implemetar o tempo Actios
 function init() {
-    moveEnemy();
     addListenerHitBox();
 }
 
+
+
 init();
+

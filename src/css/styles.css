@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
-    background-image: url("/src/img/wall.png");
+    background-color: limegreen;
 }
 
 .menu {
@@ -26,14 +26,16 @@
 }
 
 .square {
+    margin: 1rem;
     height: 150px;
     width: 150px;
+    border-radius: 50%;
     border:  1px solid rgb(0, 0, 0);
-    background-color: rgb(47, 233, 168);
+    background-color: rgb(56, 46, 48);
 }
 
  .enemy {
-    background-image: url("/src/img/ralph.png");
+    background-image: url("/src/img/toupeira.jpg");
     background-size: cover;
  }
 
