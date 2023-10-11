@@ -1,7 +1,7 @@
 
 const state = {
     view:{
-        squares: document.querySelectorAll(".square"),
+        squares: document.querySelectorAll(".hole"),
         enemy: document.querySelector(".enemy"),
         timeLeft: document.querySelector("#time-left"),
         score: document.querySelector("#score"),
@@ -31,7 +31,7 @@ function countDown() {
     if (state.values.curretTime <=  0)  {
         clearInterval(state.actions.countDownTimerId);
         clearInterval(state.actions.timeId);
-        alert("Gmae Over! O seu resultado foi:" + state.values.result);
+        alert("Game Over! O seu resultado foi: " + state.values.result + " pontos ");
     }
 }
 
